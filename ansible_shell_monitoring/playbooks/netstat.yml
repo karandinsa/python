@@ -1,0 +1,12 @@
+- hosts: server
+  tasks:
+    - name: netstat
+      shell: netstat -I vr0 -b -d -n
+      register: netstat_output_vr0
+
+    - name: log_to_file
+      local_action:
+        module: copy
+        content: "{{netstat_output_vr0}}"
+        dest: "/usr/local/etc/ansible/log/server.netstat.vr0"
+

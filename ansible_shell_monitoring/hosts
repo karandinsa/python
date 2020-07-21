@@ -1,0 +1,41 @@
+all:
+ hosts:
+  app:
+   name : app
+   fqdn : app.org.local.
+   ansible_ssh_port : 22000
+   ansible_ssh_host : 192.168.0.1
+   ansible_ssh_private_key_file : '/root/.ssh/ansible_app.key'
+   ansible_user : suoper
+   ansible_python_interpreter : /usr/local/bin/python3.6
+   ansible_become : True
+   ansible_become_ask_pass : False
+   ansible_become_method : su
+   ansible_become_user : root
+   ansible_become_password : rootpass
+  vm2:
+   name : vm2
+   fqdn : vm2.org.local.
+   ansible_ssh_port : 22000
+   ansible_ssh_host : 192.168.0.2
+   ansible_ssh_private_key_file : '/root/.ssh/ansible_vm2.key'
+   ansible_user : suoper
+   ansible_python_interpreter : /usr/local/bin/python3.6
+   ansible_become : True
+   ansible_become_ask_pass : False
+   ansible_become_method : su
+   ansible_become_user : root
+   ansible_become_password : rootpass2
+  vm:
+   name : vm
+   fqdn : vm.org.local.
+   ansible_ssh_port : 22000
+   ansible_ssh_host : 192.168.0.3
+   ansible_ssh_private_key_file : '/root/.ssh/ansible_vm.key'
+   ansible_user : suoper
+   ansible_python_interpreter : /usr/local/bin/python3.6
+   ansible_become : True
+   ansible_become_ask_pass : False
+   ansible_become_method : su
+   ansible_become_user : root
+   ansible_become_password : rootpass3

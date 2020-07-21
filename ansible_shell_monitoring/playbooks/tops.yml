@@ -1,0 +1,46 @@
+- hosts: app
+  tasks:
+    - name: top
+      shell: top -d 2 -s 2
+      register: top_output
+
+    - local_action:
+        module: copy
+        content: "{{top_output}}"
+        dest: "/usr/local/etc/ansible/log/app.top"
+
+- hosts: vm2
+  tasks:
+    - name: top
+      shell: top -d 2 -s 2
+      register: top_output
+
+    - local_action:
+        module: copy
+        content: "{{top_output}}"
+        dest: "/usr/local/etc/ansible/log/vm2.top"
+
+- hosts: vm
+  tasks:
+    - name: top
+      shell: top -d 2 -s 2
+      register: top_output
+
+    - name: log_to_file
+      local_action:
+        module: copy
+        content: "{{top_output}}"
+        dest: "/usr/local/etc/ansible/log/vm.top"
+
+- hosts: server
+  tasks:
+    - name: top
+      shell: top -d 2 -s 2
+      register: top_output
+
+    - name: log_to_file
+      local_action:
+        module: copy
+        content: "{{top_output}}"
+        dest: "/usr/local/etc/ansible/log/server.top"
+
